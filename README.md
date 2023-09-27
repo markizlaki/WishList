@@ -1,1 +1,1 @@
-# WishListi
+# WishList
