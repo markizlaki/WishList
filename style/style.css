@@ -82,11 +82,20 @@ fieldset {
     color: #365aba;
 }
 
+.btn_castling {
+    background: #365aba;
+    color: #ffffff;
+}
+
 /* TEMP */
+.hero {
+    display: none;
+}
+
 .wishlist {
     display: none;
 }
 
 .edit {
-    display: none;
+    /* display: none; */
 }
