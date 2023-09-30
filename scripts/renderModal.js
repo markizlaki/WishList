@@ -1,4 +1,4 @@
-import { createElement } from "./helper.js";
+import { createElement, scrollController } from "./helper.js";
 
 export const renderModal = ({
     title,
@@ -41,7 +41,7 @@ export const renderModal = ({
         });
 
         const modalLabelLogin = createElement('label', {
-            className: 'modazl__label',
+            className: 'modal__label',
         });
 
         const modalInputLogin = createElement('input', {
@@ -81,6 +81,7 @@ export const renderModal = ({
         modal.addEventListener('click', ({ target }) => {
             if (target === modal || target.closest('.modal__close')) {
                 modal.remove();
+                scrollController.enabledScroll();
             }
         })
 
@@ -92,6 +93,8 @@ export const renderModal = ({
         modalMain.append(modalTitle, modalDescription, modalForm, modalCloseBtn);
 
         modal.append(modalMain);
+
+        scrollController.disabledScroll();
 
         document.body.append(modal);
 };

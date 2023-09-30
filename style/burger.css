@@ -35,7 +35,6 @@
   .burger:before {
     content: '';
     transition: transform 0.3s ease-out, top 0.3s ease-out;
-    transform-origin: 0 0;
   }
 
   .burger:after {
@@ -53,14 +52,12 @@
 
   .burger.burger_active:before {
     top: 50%;
-    transform: rotate(-45deg);
-    transform-origin: 50% 50%;
+    transform: rotate(45deg)
   } 
 
   .burger.burger_active:after {
     top: 50%;
-    transform: rotate(45deg);
-    transform-origin: 50% 50%;
+    transform: rotate(-45deg)
   } 
 }
 

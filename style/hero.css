@@ -28,7 +28,7 @@
 @media (max-width: 1700px) {
   .hero__title {
     font-size: 200px;
-    margin-bottom: 12px;
+    margin-bottom: 12;
   }
 
   .hero__description {

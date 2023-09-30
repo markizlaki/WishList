@@ -26,13 +26,13 @@ export const createHero = () => {
     });
 
     [
-        'создайте список желаний',
+        'Создайте список желаний',
         'Поделитесь ссылкой с&nbsp;друзьями',
         'Получите желанный подарок',
     ].forEach(text => {
         const step = createElement('li', {
             className: 'steps__item',
-            innerHTML: 'создайте список желаний'
+            innerHTML: text,
         });
 
         listSteps.append(step);
