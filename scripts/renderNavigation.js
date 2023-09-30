@@ -11,10 +11,44 @@ createBurgerMenu(nav, 'nav_active', '.nav__btn');
 export const renderNavigation = () => {
     nav.textContent = '';
 
+    if (auth.login) {
+        const buttonEditprofile = createElement("button", {
+            className: "nav__btn btn",
+            textContent: "Редактировать профиль"
+        });
+
+        buttonEditprofile.addEventListener('click', () => {
+            router.setRoute(`/editprofile/${auth.login}`);
+        });
+
+        const buttonAddWish = createElement("button", {
+            className: "nav__btn btn",
+            textContent: "Добавить желание"
+        });
+
+        buttonAddWish.addEventListener('click', () => {
+            router.setRoute('/editwish/newwish');
+        });
+
+        const buttonlogout = createElement("button", {
+            className: "nav__btn btn",
+            textContent: "Выйти"
+        });
+
+        buttonlogout.addEventListener('click', () => {
+            localStorage.removeItem(JWT_TOKEN_KEY);
+            auth.login = '';
+            router.setRoute('/');
+        });
+
+        nav.append(buttonEditprofile, buttonAddWish, buttonlogout);
+        return;
+    }
+
     const buttonSignUp = createElement("button", {
         className: "nav__btn btn",
         textContent: "Зарегистрироваться"
-    })
+    });
 
     buttonSignUp.addEventListener("click", () => {
         renderModal({
