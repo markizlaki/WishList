@@ -8,8 +8,31 @@ const nav = document.querySelector(".nav");
 
 createBurgerMenu(nav, 'nav_active', '.nav__btn');
 
-export const renderNavigation = () => {
+export const renderNavigation = (edit, formProfile) => {
     nav.textContent = '';
+    if (edit) {
+        const buttonSave = createElement("button", {
+            className: "nav__btn btn",
+            textContent: "Сохранить изменения"
+        });
+
+        buttonSave.addEventListener('click', (e) => {
+            e.preventDefault();
+            formProfile.dispatchEvent(new Event('submit', {bubbles: true}));
+        });
+
+        const buttonBack = createElement("button", {
+            className: "nav__btn btn",
+            textContent: "Назад"
+        });
+
+        buttonBack.addEventListener('click', (e) => {
+            history.back();
+        });
+
+        nav.append(buttonSave, buttonBack);
+        return;
+    }
 
     if (auth.login) {
         const buttonEditprofile = createElement("button", {
