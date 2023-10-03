@@ -135,6 +135,8 @@ export const createEditProfile = async (login) => {
         name: 'day',
     });
 
+    editBirthdayLabelDay.append(editBirthdaySelectDay);
+
     const editBirthdayLabelMonth = createElement('label', {
         className: 'edit__label edit__label_select',
     });
@@ -143,6 +145,8 @@ export const createEditProfile = async (login) => {
         className: 'edit__select',
         name: 'month',
     });
+
+    editBirthdayLabelMonth.append(editBirthdaySelectMonth);
 
     const editBirthdayLabelYear = createElement('label', {
         className: 'edit__label edit__label_select',
@@ -153,13 +157,20 @@ export const createEditProfile = async (login) => {
         name: 'year',
     });
     
-    editBirthdayLabelDay.append(editBirthdaySelectDay);
-    editBirthdayLabelMonth.append(editBirthdaySelectMonth);
     editBirthdayLabelYear.append(editBirthdaySelectYear);
 
-    createSelectDate(editBirthdayLabelDay, editBirthdayLabelMonth, editBirthdaySelectYear, user.birthdate);
+    createSelectDate(
+        editBirthdaySelectDay,
+        editBirthdaySelectMonth,
+        editBirthdaySelectYear,
+        user.birthdate,
+        );
 
-    editBirthdayWrapper.append(editBirthdaySelectDay, editBirthdaySelectMonth, editBirthdaySelectYear);
+    editBirthdayWrapper.append(
+        editBirthdayLabelDay,
+        editBirthdayLabelMonth,
+        editBirthdayLabelYear,
+        );
 
     const editDescription = createElement('fieldset', {
         className: 'edit__description',

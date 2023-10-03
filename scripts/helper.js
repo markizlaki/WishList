@@ -29,8 +29,8 @@ export const createSelectDate = (selectDay, selectMonth, selectYear, birthdate) 
 
     for (let day = 0; day <= 31; day++) {
         const option = document.createElement('option');
-        option.value = day ? day : ''
-        option.text = day ? day : ''
+        option.value = day ? day : '';
+        option.text = day ? day : '';
         selectDay.append(option);
     }
 
@@ -84,8 +84,6 @@ export const createSelectDate = (selectDay, selectMonth, selectYear, birthdate) 
         })
     })
 };
-
-
 
 export const scrollController = {
     scrollPosition: 0,
