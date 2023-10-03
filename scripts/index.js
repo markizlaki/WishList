@@ -9,13 +9,17 @@ export const router = Router();
 const token = localStorage.getItem(JWT_TOKEN_KEY);
 export const auth = token ? await getLogin(token) : {};
 
+let isMainPage = true;
+
 const app = document.querySelector(".app");
 
 const handleEditPageRoute = (id) => {
+    isMainPage = false;
 
 }
 
 const handleEditProfileRoute = async (login) => {
+    isMainPage = false;
     app.textContent = '';
     const {sectionEditProfile, formProfile} = await createEditProfile(login);
     renderNavigation('profile', formProfile);
@@ -23,6 +27,7 @@ const handleEditProfileRoute = async (login) => {
 }
 
 const handleUserRoute = async (login) => {
+    isMainPage = false;
     app.textContent = '';
     renderNavigation();
     app.append(await createWishlist(login));
@@ -30,13 +35,13 @@ const handleUserRoute = async (login) => {
 
 
 const handleHomePage = () => {
+    isMainPage = false;
     app.textContent = '';
     renderNavigation();
     app.append(createHero());
 }
 
 const init = () => {
-    let isMainPage = true;
 
     router.on('/', handleHomePage);
     router.on('/editwish/newwish', handleEditPageRoute);
@@ -48,7 +53,6 @@ const init = () => {
     
 
     if (isMainPage) {
-        isMainPage = false;
 
         if (auth.login) {
             router.setRoute(`/user/${auth.login}`);

@@ -1,6 +1,7 @@
 import { API_URL } from "./const.js";
 import { createElement, createSelectDate, handleImageFileSelection } from "./helper.js";
-import { getUser } from "./serviceAPI.js";
+import { router } from "./index.js";
+import { getUser, sendUserData } from "./serviceAPI.js";
 
 export const createEditProfile = async (login) => {
     const user = await getUser(login);
@@ -19,8 +20,17 @@ export const createEditProfile = async (login) => {
         className: 'edit__form',
     });
 
-    formProfile.addEventListener('submit', (e) => {
-        // !todo
+    formProfile.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const data = Object.fromEntries(formData);
+        
+        if (data.day && data.month && data.year) {
+            data.birthdate = `${data.month}/${data.day}/${data.year}`;
+        }
+
+        await sendUserData(user.id, data);
+        router.setRoute(`/user/${login}`);
     });
 
     const editAvatar = createElement('fieldset', {
@@ -55,7 +65,12 @@ export const createEditProfile = async (login) => {
         accept: 'image/jpeg, image/png',
     });
 
-    handleImageFileSelection(editAvatarInput, editAvatarImage);
+    const editHiddenInput = createElement('input', {
+        type: 'hidden',
+        name: 'avatar'
+    });
+    
+    handleImageFileSelection(editAvatarInput, editAvatarImage, editHiddenInput);
 
     const btnDeleteAvatar = createElement('button', {
         className: 'edit__avatar-delete',
@@ -73,7 +88,7 @@ export const createEditProfile = async (login) => {
         editAvatarImage.src = `img/avatar.png`;
     });
 
-    editAvatarLoad.append(editAvatarLabel, editAvatarInput, btnDeleteAvatar);
+    editAvatarLoad.append(editAvatarLabel, editAvatarInput, editHiddenInput, btnDeleteAvatar);
 
     editAvatar.append(editAvatarImage, editAvatarLoad);
 
@@ -186,6 +201,7 @@ export const createEditProfile = async (login) => {
         className: 'edit__description-input',
         name: 'description',
         id: 'description',
+        value: user.description,
     });
 
     editDescription.append(editDescriptionLabel, editDescriptionTextarea);
