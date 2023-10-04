@@ -10,6 +10,7 @@ createBurgerMenu(nav, 'nav_active', '.nav__btn');
 
 export const renderNavigation = (edit, formProfile) => {
     nav.textContent = '';
+
     if (edit) {
         const buttonSave = createElement("button", {
             className: "nav__btn btn",

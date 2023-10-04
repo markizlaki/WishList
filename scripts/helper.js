@@ -22,7 +22,7 @@ export const pluralizeYears = (age) => {
 };
 
 export const handleImageFileSelection = (inputFile, image, inputHidden) => {
-    const handleFileInputChange = event => {
+    const handleFileInputChage = event => {
         if (event.target.files.length > 0) {
             const file = event.target.files[0];
             const reader = new FileReader();
@@ -36,7 +36,7 @@ export const handleImageFileSelection = (inputFile, image, inputHidden) => {
         }
     };
 
-    inputFile.addEventListener('change', handleFileInputChange);
+    inputFile.addEventListener('change', handleFileInputChage);
 };
 
 export const createSelectDate = (selectDay, selectMonth, selectYear, birthdate) => {

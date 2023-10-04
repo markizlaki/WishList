@@ -91,7 +91,6 @@ export const createWishlist = async pageLogin => {
     container.append(profile);
 
     if (user.description) {
-        console.log(user.description);
         const description = createElement('p', {
             className: 'wishlist__description',
             textContent: user.description,
@@ -136,19 +135,30 @@ export const createWishlist = async pageLogin => {
                 });
 
                 const itemImg = createElement('img', {
-                    src: `${API_URL}/${item.img}`,
+                    src: `${API_URL}/${item.image}`,
                     alt: item.title,
                     className: 'item__image',
                 });
 
                 const itemTitle = createElement('h4', {
                     className: 'item__title',
-                    textContent: item.title,
                 });
+
+                if (item.link) {
+                    const itemLink = createElement('a', {
+                        className: 'item__link',
+                        href: item.link,
+                        textContent: item.title,
+                        target: '_blank',
+                    })
+                    itemTitle.append(itemLink);
+                } else {
+                    itemTitle.textContent = item.title;
+                }
 
                 const itemPrice = createElement('p', {
                     className: 'item__price',
-                    textContent: `${item.price} ${item.currency}`,
+                    textContent: item.price && `${item.price} ${item.currency}`,
                 });
 
                 itemElem.append(itemImg, itemTitle, itemPrice);

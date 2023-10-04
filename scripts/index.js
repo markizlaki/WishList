@@ -17,8 +17,7 @@ const app = document.querySelector(".app");
 const handleEditPageRoute = async (id) => {
     isMainPage = false;
     app.textContent = '';
-
-    const { sectionEditWish, formWish } = await createEditWish(id);
+    const { sectionEditWish, formWish } = await createEditWish(id); 
     renderNavigation('profile', formWish);
     app.append(sectionEditWish);
 }
@@ -27,7 +26,7 @@ const handleEditProfileRoute = async (login) => {
     isMainPage = false;
     app.textContent = '';
     
-    const {sectionEditProfile, formProfile} = await createEditProfile(login);
+    const { sectionEditProfile, formProfile } = await createEditProfile(login);
     renderNavigation('profile', formProfile);
     app.append(sectionEditProfile);
 }
@@ -58,7 +57,6 @@ const init = () => {
     
 
     if (isMainPage) {
-
         if (auth.login) {
             router.setRoute(`/user/${auth.login}`);
         } else {

@@ -1,7 +1,7 @@
 import { API_URL } from "./const.js";
 import { createElement, createSelectDate, handleImageFileSelection } from "./helper.js";
 import { router } from "./index.js";
-import { getUser, sendUserData } from "./serviceAPI.js";
+import { getUser, sendDataUser } from "./serviceAPI.js";
 
 export const createEditProfile = async (login) => {
     const user = await getUser(login);
@@ -29,7 +29,7 @@ export const createEditProfile = async (login) => {
             data.birthdate = `${data.month}/${data.day}/${data.year}`;
         }
 
-        await sendUserData(user.id, data);
+        await sendDataUser(user.id, data);
         router.setRoute(`/user/${login}`);
     });
 
