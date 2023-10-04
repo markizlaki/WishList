@@ -9,6 +9,9 @@ import { createEditWish } from "./createEditWish.js";
 export const router = Router();
 const token = localStorage.getItem(JWT_TOKEN_KEY);
 export const auth = token ? await getLogin(token) : {};
+if (!auth.login) {
+    localStorage.removeItem(JWT_TOKEN_KEY);
+}
 
 let isMainPage = true;
 

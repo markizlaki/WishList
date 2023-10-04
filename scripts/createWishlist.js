@@ -3,7 +3,7 @@ import { createElement, pluralizeYears } from "./helper.js";
 import { auth, router } from "./index.js";
 import { getUser } from "./serviceAPI.js";
 
-export const createWishlist = async pageLogin => {
+export const createWishlist = async (pageLogin) => {
     const login = auth.login;
 
     if (!pageLogin) {
@@ -11,6 +11,11 @@ export const createWishlist = async pageLogin => {
     }
 
     const user = await getUser(pageLogin);
+
+    if (!user.login) {
+        router.setRoute('/');
+        return;
+    }
 
     const section = createElement('section', {
         className: 'wishlist',
